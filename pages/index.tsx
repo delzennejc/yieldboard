@@ -57,7 +57,7 @@ const Home: NextPage = () => {
             </div>
         </header>
         <div style={{ maxWidth: 1400 }} className="flex flex-col justify-center">
-          <div className="flex w-full justify-between mb-16">
+          <div className="flex flex-col space-y-4 items-center md:flex-row w-full justify-between mb-16">
             <EarningStatus title="Farming balance" amount={earnings.farmingBalance.amount} apy={earnings.farmingBalance.apy} />
             <EarningStatus title="Yearly earnings" amount={earnings.yearly.amount} apy={earnings.yearly.apy} />
             <EarningStatus title="Weekly earnings" amount={earnings.weekly.amount} apy={earnings.weekly.apy} />
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
           </div>
           <div className="w-full">
             <p className="text-lg font-bold text-gray-400 mb-5">Liquidity pools</p>
-            <div className="grid grid-cols-3 gap-12">
+            <div className="grid grid-rows-1 md:grid-cols-3 gap-12">
               {liquidityPools.map((pool, i) => {
                 const apy = pool.yearly * 100
                 const dailyUSD = +(pool.amount * pool.daily).toFixed(2)
