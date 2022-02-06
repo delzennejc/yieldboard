@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Spartan, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  background-color: #1F1D2C;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    background-color: #1F1D2C;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+span,
+h1,
+h2,
+h3 {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  opacity: 1; /* Firefox */
+  font-weight: 600;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-weight: 600;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  font-weight: 600;
+}
+
+.spartan {
+  font-family: spartan, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
