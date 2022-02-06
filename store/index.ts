@@ -80,7 +80,6 @@ const store = createStore<StoreType>({
                         pairs: tokenVals,
                     }
                 }))
-            console.log('UserPool:', userPoolData)
             const totalAmount = userPoolBalances.data[address].meta[0].value
             const yearlyApys = userPoolData.map((usData: any) => usData.yearly)
             const weeklyApys = userPoolData.map((usData: any) => usData.weekly)
