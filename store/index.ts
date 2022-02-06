@@ -61,8 +61,6 @@ const store = createStore<StoreType>({
     getPoolsData: thunk<StoreActionType, string, any, StoreType>(async (actions, address, store) => {
         try {
             const userPoolBalances = await axios.get(`https://api.zapper.fi/v1/protocols/quickswap/balances?newBalances=true&network=polygon&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241&addresses[]=${address}`)
-            // const farms = await axios.get(`https://api.zapper.fi/v1/protocols/quickswap/farms?network=polygon&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241`)
-            // console.log('farms', farms.data)
             console.log('userPools', userPoolBalances.data[address])
             const userPoolData = userPoolBalances.data[address].products
                 .flatMap((val: any) => val.assets.map((asset: any) => {
