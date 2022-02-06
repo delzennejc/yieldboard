@@ -42,9 +42,7 @@ const store = createStore<StoreType>({
             let user: any = moralis.User.current();
             if (!user) {
               user = await moralis.authenticate({ signingMessage: "Login on YieldBoard" })
-              console.log("logged in user:", user);
               const userAddress = user.get("ethAddress")
-              console.log(userAddress);
               actions.connectUser({ address: userAddress })
               actions.getPoolsData(userAddress)
             }
@@ -61,7 +59,6 @@ const store = createStore<StoreType>({
     getPoolsData: thunk<StoreActionType, string, any, StoreType>(async (actions, address, store) => {
         try {
             const userPoolBalances = await axios.get(`https://api.zapper.fi/v1/protocols/quickswap/balances?newBalances=true&network=polygon&api_key=96e0cc51-a62e-42ca-acee-910ea7d2a241&addresses[]=${address}`)
-            console.log('userPools', userPoolBalances.data[address])
             const userPoolData = userPoolBalances.data[address].products
                 .flatMap((val: any) => val.assets.map((asset: any) => {
                     const tokenVals = asset.tokens.flatMap((tokens: any) => tokens.tokens.map((token: any) => {
