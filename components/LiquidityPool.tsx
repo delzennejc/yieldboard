@@ -17,6 +17,8 @@ interface LiquidityPoolType {
 }
 
 const LiquidityPool = ({ amount, apy, daily, vested, protocol, pair1, pair2 }: LiquidityPoolType) => {
+    const showApy = apy < 0.01 && apy > 0 ? "<0.01% APY" : `${apy.toFixed(2)}% APY`
+    const showVested = vested < 0.01 && vested > 0 ? "<$0.01" : `$${vested.toFixed(2)}`
     return (
         <main 
             style={{ background: "#292B38", width: 345, height: 350 }} 
@@ -29,7 +31,7 @@ const LiquidityPool = ({ amount, apy, daily, vested, protocol, pair1, pair2 }: L
                         style={{ background: "#283C2F" }} 
                         className={`inline-block px-2 py-1 text-xs text-green-500 md:text-sm font-extrabold justify-center self-start rounded-full`}
                     >
-                        {apy}% APY
+                        {showApy}
                     </div>
                 </div>
                 <div 
@@ -81,7 +83,7 @@ const LiquidityPool = ({ amount, apy, daily, vested, protocol, pair1, pair2 }: L
                     <p className="text-lg font-bold text-gray-400">per day</p>
                 </div>
                 <div className="flex flex-col items-center">
-                    <p className="text-xl font-extrabold mb-1">${vested}</p>
+                    <p className="text-xl font-extrabold mb-1">{showVested}</p>
                     <p className="text-lg font-bold text-gray-400">vested</p>
                 </div>
             </div>

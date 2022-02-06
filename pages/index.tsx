@@ -8,10 +8,12 @@ import Layout from '../components/Layout'
 import EarningStatus from '../components/EarningStatus'
 import LiquidityPool from '../components/LiquidityPool'
 import { useAppActions, useAppState } from '../store'
-import { UserType } from '../store/store.model'
+import { EarningsType, liquidityPoolsType, UserType } from '../store/store.model'
 
 const Home: NextPage = () => {
   const userData: UserType = useAppState((state) => state.data.user)
+  const earnings: EarningsType = useAppState((state) => state.data.earnings)
+  const liquidityPools: liquidityPoolsType[] = useAppState((state) => state.data.liquidityPools)
   const login = useAppActions(actions => actions.login)
   const connectUser = useAppActions(actions => actions.connectUser)
   const getPoolsData = useAppActions(actions => actions.getPoolsData)
@@ -55,15 +57,31 @@ const Home: NextPage = () => {
             </div>
         </header>
         <div className="flex w-full justify-between mb-16">
-          <EarningStatus title="Farming balance" amount={26883} apy={12} />
-          <EarningStatus title="Yearly earnings" amount={3225} apy={12} />
-          <EarningStatus title="Weekly earnings" amount={67} apy={0.2} />
-          <EarningStatus title="Daily earnings" amount={9.5} apy={0.3} />
+          <EarningStatus title="Farming balance" amount={earnings.farmingBalance.amount} apy={earnings.farmingBalance.apy} />
+          <EarningStatus title="Yearly earnings" amount={earnings.yearly.amount} apy={earnings.yearly.apy} />
+          <EarningStatus title="Weekly earnings" amount={earnings.weekly.amount} apy={earnings.weekly.apy} />
+          <EarningStatus title="Daily earnings" amount={earnings.daily.amount} apy={earnings.daily.apy} />
         </div>
         <div className="w-full">
           <p className="text-lg font-bold text-gray-400 mb-5">Liquidity pools</p>
           <div className="grid grid-cols-3 gap-12">
-            <LiquidityPool
+            {liquidityPools.map((pool, i) => {
+              const apy = pool.yearly * 100
+              const dailyUSD = +(pool.amount * pool.daily).toFixed(2)
+              return (
+                <LiquidityPool
+                  key={i}
+                  protocol={pool.protocolUrl}
+                  amount={pool.amount}
+                  apy={apy}
+                  daily={dailyUSD}
+                  vested={pool.vested}
+                  pair1={pool.pairs[0]}
+                  pair2={pool.pairs[1]}
+                />
+              )
+            })}
+            {/* <LiquidityPool
               protocol="https://bitcoinist.com/wp-content/uploads/2021/08/quickswap-img.png"
               amount={15248}
               apy={10}
@@ -107,7 +125,7 @@ const Home: NextPage = () => {
                 name: 'QUICK',
                 logo: 'https://bitcoinist.com/wp-content/uploads/2021/08/quickswap-img.png'
               }}
-            />
+            /> */}
           </div>
         </div>
       </Layout>

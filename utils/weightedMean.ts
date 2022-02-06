@@ -13,3 +13,7 @@ export function weightedMean(arrValues: number[], arrWeights: number[]) {
   
     return result[0] / result[1];
 }
+
+export function percentage(partialValue: number, totalValue: number) {
+    return (100 * partialValue) / totalValue;
+ } 

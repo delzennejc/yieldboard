@@ -7,6 +7,7 @@ interface EarningStatusType {
 }
 
 const EarningStatus = ({ title, amount, apy }: EarningStatusType) => {
+    const showApy = apy < 0.01 && apy > 0 ? "<0.01% APY" : `${apy.toFixed(2)}% APY`
     return (
         <main 
             style={{ background: "#292B38", width: 250 }} 
@@ -18,7 +19,7 @@ const EarningStatus = ({ title, amount, apy }: EarningStatusType) => {
                 style={{ background: "#283C2F" }} 
                 className={`inline-block px-2 py-1 text-xs text-green-500 md:text-sm font-extrabold justify-center self-center rounded-full`}
             >
-                {apy}% APY
+                {showApy}
             </div>
         </main>
     )

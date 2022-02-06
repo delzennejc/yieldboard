@@ -22,6 +22,22 @@ export interface EarningsType {
     daily: BalanceType;
 }
 
+export interface PairsType {
+    name: string;
+    amount: number;
+    logo: string;
+}
+
+export interface liquidityPoolsType {
+    protocolUrl: string;
+    amount: number;
+    yearly: number;
+    weekly: number;
+    daily: number;
+    vested: number;
+    pairs: PairsType[];
+}
+
 /**
  * ACTIONS
  */
@@ -43,11 +59,14 @@ export type StoreActionsParams = (param: StoreActions) => any
 export interface StoreDataType {
     user: UserType;
     earnings: EarningsType;
+    liquidityPools: liquidityPoolsType[];
 }
 
 export interface StoreActionType {
     connectUser: Action<StoreType, ConnectUserType>;
     login: Thunk<StoreActionType, void, any, StoreType>;
+    addEarnings: Action<StoreType, EarningsType>
+    addLiquidityPools: Action<StoreType, liquidityPoolsType[]>
     getPoolsData: Thunk<StoreActionType, string, any, StoreType>;
 }
 
