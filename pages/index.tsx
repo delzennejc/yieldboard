@@ -57,7 +57,7 @@ const Home: NextPage = () => {
             </div>
         </header>
         <div style={{ maxWidth: 1400 }} className="flex flex-col justify-center">
-          <div className="flex flex-col space-y-4 items-center md:flex-row w-full justify-between mb-16">
+          <div className="flex flex-col space-y-4 md:space-y-0 items-center md:flex-row w-full justify-between mb-16">
             <EarningStatus title="Farming balance" amount={earnings.farmingBalance.amount} apy={earnings.farmingBalance.apy} />
             <EarningStatus title="Yearly earnings" amount={earnings.yearly.amount} apy={earnings.yearly.apy} />
             <EarningStatus title="Weekly earnings" amount={earnings.weekly.amount} apy={earnings.weekly.apy} />
